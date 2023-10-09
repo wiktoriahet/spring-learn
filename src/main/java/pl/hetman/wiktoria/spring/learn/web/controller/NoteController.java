@@ -1,10 +1,14 @@
 package pl.hetman.wiktoria.spring.learn.web.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.hetman.wiktoria.spring.learn.web.model.NoteModel;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +32,16 @@ public class NoteController {
     }
 
     @PostMapping
-    public String create(NoteModel note) {
+    public String create(@Valid @ModelAttribute(name = "note") NoteModel note,
+                         BindingResult bindingResult) {
         LOGGER.info("create(" + note + ")");
+
+        if (bindingResult.hasErrors()) {
+            LOGGER.info("validation errors in Model: " + note);
+            LOGGER.info("validation errors: " + bindingResult.getAllErrors());
+            return "notes/create-note";
+        }
+
         notes.add(note);
         return "redirect:/notes";
     }

@@ -1,8 +1,12 @@
 package pl.hetman.wiktoria.spring.learn.web.model;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class NoteModel {
 
+    @NotBlank(message = "Title must not be blank")
     private String title;
+    @NotBlank(message = "Content must not be blank")
     private String content;
 
     public NoteModel() {
