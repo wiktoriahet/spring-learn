@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 
 @Controller //spring ma sie tym zainteresowac (to tez jest component)
 @RequestMapping(value = "/notes") //moduł web ma pod konkretnym adresem url obsługiwać żądania http
-public class NoteController {
+public class ExampleNoteController {
 
-    private static final Logger LOGGER = Logger.getLogger(NoteController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ExampleNoteController.class.getName());
 
     @PostMapping //metody protokołu http
     public void create() {
