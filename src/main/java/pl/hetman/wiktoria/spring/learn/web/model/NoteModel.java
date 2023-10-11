@@ -1,6 +1,9 @@
 package pl.hetman.wiktoria.spring.learn.web.model;
 
 import jakarta.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotBlank;
+
+import jakarta.validation.constraints.NotBlank;
 
 public class NoteModel {
 

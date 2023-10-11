@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.logging.Logger;
 
 @Controller //spring ma sie tym zainteresowac (to tez jest component)
-@RequestMapping(value = "/notes") //moduł web ma pod konkretnym adresem url obsługiwać żądania http
+@RequestMapping(value = "/notesexample") //moduł web ma pod konkretnym adresem url obsługiwać żądania http
 public class ExampleNoteController {
 
     private static final Logger LOGGER = Logger.getLogger(ExampleNoteController.class.getName());
