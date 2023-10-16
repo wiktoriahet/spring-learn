@@ -2,6 +2,7 @@ package pl.hetman.wiktoria.spring.learn.app.shelter.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.hetman.wiktoria.spring.learn.app.shelter.web.model.CatModel;
 
@@ -17,5 +18,11 @@ public class CatController {
         LOGGER.info("read(" + catModel + ")");
         LOGGER.info("read(...)");
         return "app/shelter/cats.html";
+    }
+
+    @PostMapping
+    public void create(CatModel catModel){
+        LOGGER.info("create(" + catModel + ")");
+        LOGGER.info("create(...)");
     }
 }
