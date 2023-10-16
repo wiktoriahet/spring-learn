@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class CatModel {
     private String name;
-    private int tagNumber;
+    private int tag;
 }
