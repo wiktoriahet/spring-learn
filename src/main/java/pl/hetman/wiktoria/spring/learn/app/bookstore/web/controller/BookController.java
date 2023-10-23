@@ -10,7 +10,7 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.BookService;
 import java.util.logging.Logger;
 
 @Controller
-//@RequestMapping(value = "/books")
+@RequestMapping(value = "/books")
 public class BookController {
     public static final Logger LOGGER = Logger.getLogger(BookController.class.getName());
 
@@ -32,10 +32,21 @@ public class BookController {
         return "app/bookstore/books.html";
     }
 
-    //@PostMapping
-    public void create(BookModel bookModel) {
+    @GetMapping(value = "/create")
+    public String createView(){
+        LOGGER.info("createView()");
+
+
+
+        LOGGER.info("createView(...)");
+        return "app/bookstore/create-book.html";
+    }
+
+    @PostMapping
+    public String create(BookModel bookModel) {
         LOGGER.info("create(" + bookModel + ")");
         LOGGER.info("create(...)");
+        return "app/bookstore/books.html";
     }
 
 }
