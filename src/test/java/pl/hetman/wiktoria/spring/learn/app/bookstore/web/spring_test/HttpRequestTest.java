@@ -19,10 +19,8 @@ public class HttpRequestTest {
 
     @Test
     void bookControllerHttpRequest() throws Exception {
-//        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
-//                String.class)).contains("Hello, World");
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
-                String.class)).isNotEmpty();
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/books/hello",
+                String.class)).contains("hello");
     }
 
 }
