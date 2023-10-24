@@ -1,11 +1,9 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.web.controller;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.BookService;
 
@@ -35,9 +33,8 @@ public class BookController {
     }
 
     @GetMapping(value = "/create")
-    public String createView(){
+    public String createView() {
         LOGGER.info("createView()");
-
 
 
         LOGGER.info("createView(...)");
@@ -46,7 +43,10 @@ public class BookController {
 
     @PostMapping
     public String create(BookModel bookModel) {
+    //public String create(String title, Integer pages) {
         LOGGER.info("create(" + bookModel + ")");
+//        LOGGER.info("create(" + title + ")");
+//        LOGGER.info("create(" + pages + ")");
         LOGGER.info("create(...)");
         return "app/bookstore/books.html";
     }
