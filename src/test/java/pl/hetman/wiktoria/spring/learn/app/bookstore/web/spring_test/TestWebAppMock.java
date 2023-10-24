@@ -23,8 +23,10 @@ public class TestWebAppMock {
 
     @Test
     void shouldReturnString() throws Exception {
-        this.mockMvc.perform(get("/books/hello")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("hello")));
+        this.mockMvc.perform(get("/books"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("bookstore")));
 
     }
 }

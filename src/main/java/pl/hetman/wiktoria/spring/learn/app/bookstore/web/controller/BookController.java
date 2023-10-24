@@ -1,5 +1,6 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.web.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,11 +20,6 @@ public class BookController {
 
     public BookController(BookService bookService) { //injection
         this.bookService = bookService;
-    }
-
-    @GetMapping(value = "/hello")
-    public @ResponseBody String hello(){
-        return "hello";
     }
 
     //http://localhost:8080/books?title=Vampire&pages=230
