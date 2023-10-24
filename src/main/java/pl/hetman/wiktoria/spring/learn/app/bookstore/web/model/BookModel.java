@@ -1,8 +1,5 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.web.model;
 
-//@ToString
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class BookModel {
     private String title;
     private int pages;
