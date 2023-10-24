@@ -20,9 +20,17 @@ public class CatController {
         return "app/shelter/cats.html";
     }
 
+    @GetMapping(value = "/create")
+    public String createView() {
+        LOGGER.info("createView()");
+        LOGGER.info("createView(...)");
+        return "app/shelter/create-cat.html";
+    }
+
     @PostMapping
-    public void create(CatModel catModel){
+    public String create(CatModel catModel){
         LOGGER.info("create(" + catModel + ")");
         LOGGER.info("create(...)");
+        return "app/shelter/cats.html";
     }
 }
