@@ -2,12 +2,12 @@ package pl.hetman.wiktoria.spring.learn.app.shelter.web.model;
 
 public class CatModel {
     private String name;
-    private int tag;
+    private Integer tag;
 
     public CatModel() {
     }
 
-    public CatModel(String name, int tag) {
+    public CatModel(String name, Integer tag) {
         this.name = name;
         this.tag = tag;
     }
@@ -20,11 +20,11 @@ public class CatModel {
         this.name = name;
     }
 
-    public int getTag() {
+    public Integer getTag() {
         return tag;
     }
 
-    public void setTag(int tag) {
+    public void setTag(Integer tag) {
         this.tag = tag;
     }
 

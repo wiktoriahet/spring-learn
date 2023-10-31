@@ -26,8 +26,10 @@ public class CatController {
     }
 
     @GetMapping(value = "/create")
-    public String createView() {
+    public String createView(ModelMap modelMap) {
         LOGGER.info("createView()");
+        //modelMap.addAttribute("name", new String(""));
+        modelMap.addAttribute("cat", new CatModel());
         LOGGER.info("createView(...)");
         return "app/shelter/create-cat.html";
     }
