@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Bookstore</title>
 </head>
 <body>
 <div>
-    <h1>bookstore</h1>
+    <h1>Bookstore</h1>
+    <div>Books list</div>
+    <div th:text="${books}"></div>
 </div>
 </body>
 </html>
