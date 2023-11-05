@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create a book</title>
@@ -9,9 +9,9 @@
     <h1>Create a book</h1>
 </div>
 <div>
-    <form action="/books" method="post">
-        Title: <input type="text" name="title">
-        Pages: <input type="text" name="pages">
+    <form action="#" th:action="@{/books}" th:object="${book}" method="post">
+        Title: <input type="text" th:field="${book.title}">
+        Pages: <input type="text" th:field="*{pages}">
         <button type="submit">Save</button>
     </form>
 </div>
