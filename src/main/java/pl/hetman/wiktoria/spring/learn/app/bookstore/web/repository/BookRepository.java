@@ -1,14 +1,14 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.web.repository;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-@Component
-public class BookRepository implements Repository<BookModel> {
+@Repository
+public class BookRepository implements BookSpringRepository<BookModel> {
 
     private static final Logger LOGGER = Logger.getLogger(BookRepository.class.getName());
 

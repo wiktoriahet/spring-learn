@@ -3,7 +3,7 @@ package pl.hetman.wiktoria.spring.learn.app.bookstore.web.repository;
 import java.util.List;
 import java.util.Optional;
 
-public interface Repository<T>{
+public interface BookSpringRepository<T>{
 
     Optional<T> create(T t);
 
