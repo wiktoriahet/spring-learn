@@ -5,6 +5,7 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookException
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.repository.BookRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -34,10 +35,29 @@ public class BookService {
     }
 
 
-    public void read(){
-        LOGGER.info("read()");
-        bookRepository.read();
+    public BookModel read(Long id){
+        LOGGER.info("read("+id+")");
+        bookRepository.read(id);
         LOGGER.info("read(...)");
+        return null;
     }
+
+    public BookModel update(Long id, BookModel bookModel){
+        LOGGER.info("update("+id+", "+bookModel+")");
+        LOGGER.info("update(...)");
+        return null;
+    }
+
+    public boolean delete(Long id){
+        LOGGER.info("delete("+id+")");
+        LOGGER.info("delete(...)");
+        return false;
+    }
+
+    public List<BookModel> list(){
+        return null;
+    }
+
+
 
 }
