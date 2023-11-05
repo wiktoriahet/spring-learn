@@ -32,15 +32,16 @@ public class BookController {
 //        LOGGER.info("read(" + title + ")");
 //        LOGGER.info("read(" + pages + ")");
         LOGGER.info("read(" + bookModel + ")");
-        bookService.read();
+        bookService.read(bookModel.getId());
         LOGGER.info("read(...)");
         return "app/bookstore/books.html";
     }
 
     @GetMapping(value = "/create")
-    public String createView() {
+    public String createView(ModelMap modelMap) {
         LOGGER.info("createView()");
 
+        modelMap.addAttribute("book", new BookModel());
 
         LOGGER.info("createView(...)");
         return "app/bookstore/create-book.html";

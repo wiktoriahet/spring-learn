@@ -4,12 +4,12 @@ public class BookModel {
 
     private Long id;
     private String title;
-    private int pages;
+    private Integer pages;
 
     public BookModel() {
     }
 
-    public BookModel(Long id, String title, int pages) {
+    public BookModel(Long id, String title, Integer pages) {
         this.id = id;
         this.title = title;
         this.pages = pages;
@@ -35,7 +35,7 @@ public class BookModel {
         return pages;
     }
 
-    public void setPages(int pages) {
+    public void setPages(Integer pages) {
         this.pages = pages;
     }
 
