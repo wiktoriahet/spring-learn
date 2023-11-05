@@ -1,15 +1,26 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.web.model;
 
 public class BookModel {
+
+    private Long id;
     private String title;
     private int pages;
 
     public BookModel() {
     }
 
-    public BookModel(String title, int pages) {
+    public BookModel(Long id, String title, int pages) {
+        this.id = id;
         this.title = title;
         this.pages = pages;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -31,7 +42,8 @@ public class BookModel {
     @Override
     public String toString() {
         return "BookModel{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", pages=" + pages +
                 '}';
     }
