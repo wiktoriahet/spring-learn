@@ -31,7 +31,7 @@ public class BookModel {
         this.title = title;
     }
 
-    public int getPages() {
+    public Integer getPages() {
         return pages;
     }
 
