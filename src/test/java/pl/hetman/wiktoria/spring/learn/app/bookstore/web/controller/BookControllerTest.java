@@ -3,10 +3,8 @@ package pl.hetman.wiktoria.spring.learn.app.bookstore.web.controller;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
-import pl.hetman.wiktoria.spring.learn.app.bookstore.web.repository.BookRepository;
+import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.BookRepository;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.BookService;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BookControllerTest {
 
