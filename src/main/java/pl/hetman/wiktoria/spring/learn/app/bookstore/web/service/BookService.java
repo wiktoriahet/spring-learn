@@ -3,7 +3,7 @@ package pl.hetman.wiktoria.spring.learn.app.bookstore.web.service;
 import org.springframework.stereotype.Service;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookException;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
-import pl.hetman.wiktoria.spring.learn.app.bookstore.web.repository.BookRepository;
+import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.BookRepository;
 
 import java.util.List;
 import java.util.Optional;
