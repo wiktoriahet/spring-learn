@@ -2,8 +2,8 @@ package pl.hetman.wiktoria.spring.learn.app.bookstore.web.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.BookSpringRepository;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
-import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.BookRepository;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.BookService;
 
 class BookControllerTest {
@@ -11,7 +11,7 @@ class BookControllerTest {
     @Test
     void read() {
         //given
-        BookRepository bookRepository = new BookRepository();
+        BookSpringRepository bookRepository = null; // = new BookSpringRepository();
         BookService bookService = new BookService(bookRepository);
         BookController bookController = new BookController(bookService);
 
