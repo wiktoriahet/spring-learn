@@ -1,16 +1,18 @@
-package pl.hetman.wiktoria.spring.learn.app.shelter.web.model;
+package pl.hetman.wiktoria.spring.learn.app.shelter.repository.entity;
 
-public class CatModel {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
+@Entity
+public class CatEntity {
+
+    @Id
+    @GeneratedValue
     private String name;
     private Integer tag;
 
-    public CatModel() {
-    }
-
-    public CatModel(String name, Integer tag) {
-        this.name = name;
-        this.tag = tag;
+    public CatEntity() {
     }
 
     public String getName() {
@@ -31,7 +33,7 @@ public class CatModel {
 
     @Override
     public String toString() {
-        return "CatModel{" +
+        return "CatEntity{" +
                 "name='" + name + '\'' +
                 ", tag=" + tag +
                 '}';
