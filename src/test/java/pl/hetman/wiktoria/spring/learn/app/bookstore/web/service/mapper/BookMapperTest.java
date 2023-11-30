@@ -14,7 +14,7 @@ class BookMapperTest {
     private BookMapper bookMapper;
 
     @Test
-    void from() {
+    void fromEntityToModel() {
         //given
         BookModel bookModel = new BookModel();
         bookModel.setId(9L);
@@ -29,5 +29,25 @@ class BookMapperTest {
                 () -> Assertions.assertNotNull(mappedBookEntity, "mappedBookEntity is null"),
                 () -> Assertions.assertNotNull(mappedBookEntity.getTitle(), "mappedBookEntity.getTitle() is null")
         );
+    }
+
+    @Test
+    void fromModelToEntity() {
+        //given
+        BookModel bookModel = new BookModel();
+        bookModel.setId(9L);
+        bookModel.setTitle("Title");
+        bookModel.setPages(100);
+        BookEntity mappedBookEntity = bookMapper.from(bookModel);
+
+        //when
+        BookModel mapppedBookModel = bookMapper.from(mappedBookEntity);
+
+        //then
+        Assertions.assertAll(
+                () -> Assertions.assertNotNull(mapppedBookModel, "mapppedBookModel is null"),
+                () -> Assertions.assertNotNull(mapppedBookModel.getTitle(), "mapppedBookModel.getTitle() is null")
+        );
+
     }
 }
