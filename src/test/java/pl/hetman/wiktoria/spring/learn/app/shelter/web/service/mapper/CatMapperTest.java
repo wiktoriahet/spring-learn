@@ -24,8 +24,10 @@ class CatMapperTest {
         CatEntity mappedCatEntity = catMapper.from(catModel);
 
         //then
-        Assertions.assertNotNull(mappedCatEntity, "mappedCatEntity is null");
-        Assertions.assertNotNull(mappedCatEntity.getName(), "mappedCatEntity.getName() is null");
+        Assertions.assertAll(
+                ()-> Assertions.assertNotNull(mappedCatEntity, "mappedCatEntity is null"),
+                ()-> Assertions.assertNotNull(mappedCatEntity.getName(), "mappedCatEntity.getName() is null")
+        );
 
     }
 }

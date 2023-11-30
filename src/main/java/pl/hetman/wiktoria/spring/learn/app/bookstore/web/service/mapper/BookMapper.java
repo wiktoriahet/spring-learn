@@ -8,10 +8,8 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 @Component
 public class BookMapper {
 
-    ModelMapper modelMapper = new ModelMapper();
-
     public BookEntity from(BookModel bookModel) {
-
+        ModelMapper modelMapper = new ModelMapper();
         BookEntity mappedBookEntity = modelMapper.map(bookModel, BookEntity.class);
 
 //        BookEntity bookEntity = new BookEntity();
@@ -22,8 +20,9 @@ public class BookMapper {
 
         return mappedBookEntity;
     }
-// TODO: 23.11.2023 zamienić implementację metody from na użycie ModelMapper
-    //https://modelmapper.org/
-    //stworzyć repository i service dla wybranego modelu
+// TODO: 23.11.2023 zamienić implementację metody from na użycie ModelMapper [?]
+    //https://modelmapper.org/ [x]
+    //stworzyć repository i service dla wybranego modelu [x]
+    //loggery
     //przenieść do social-act-tr
 }

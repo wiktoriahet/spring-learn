@@ -25,8 +25,9 @@ class BookMapperTest {
         BookEntity mappedBookEntity = bookMapper.from(bookModel);
 
         //then
-        Assertions.assertNotNull(mappedBookEntity, "mappedBookEntity is null");
-        Assertions.assertNotNull(mappedBookEntity.getTitle(), "mappedBookEntity.getTitle() is null");
-
+        Assertions.assertAll(
+                () -> Assertions.assertNotNull(mappedBookEntity, "mappedBookEntity is null"),
+                () -> Assertions.assertNotNull(mappedBookEntity.getTitle(), "mappedBookEntity.getTitle() is null")
+        );
     }
 }
