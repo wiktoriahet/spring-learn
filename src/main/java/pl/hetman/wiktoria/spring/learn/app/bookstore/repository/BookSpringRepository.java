@@ -6,6 +6,7 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity.BookEntit
 
 @Repository
 public interface BookSpringRepository extends JpaRepository<BookEntity, Long> {
+    BookEntity findByIsbn(String isbn);
 //
 //    Optional<T> create(T t);
 //
