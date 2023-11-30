@@ -32,6 +32,7 @@ public class BookMapper {
         LOGGER.info("from(...)");
         return mappedBookModel;
     }
+    // TODO: 30.11.2023 dodać konfigurację model mapper strict
 
 // TODO: 23.11.2023 zamienić implementację metody from na użycie ModelMapper [?]
     //https://modelmapper.org/ [x]

@@ -24,6 +24,7 @@ public class BookService {
         this.bookMapper = bookMapper;
     }
 
+    // TODO: 30.11.2023 zamiast BookModel zwracać optional
     public BookModel create(BookModel bookModel) throws BookException {
         LOGGER.info("create(" + bookModel + ")");
 

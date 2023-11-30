@@ -31,3 +31,4 @@ class BookServiceTest {
         );
     }
 }
+// TODO: 30.11.2023 create tests for all if-s in BookService (4)
