@@ -34,7 +34,7 @@ public class BookMapper {
     }
     // TODO: 30.11.2023 dodać konfigurację model mapper strict
 
-// TODO: 23.11.2023 zamienić implementację metody from na użycie ModelMapper [?]
+// TODO: 23.11.2023 zamienić implementację metody from na użycie ModelMapper [x]
     //https://modelmapper.org/ [x]
     //stworzyć repository i service dla wybranego modelu [x]
     //loggery
