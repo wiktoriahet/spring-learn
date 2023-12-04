@@ -6,6 +6,10 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity.BookEntit
 
 @Repository
 public interface BookSpringRepository extends JpaRepository<BookEntity, Long> {
+    BookEntity findByIsbn(String isbn); // derived query method
+    //https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html
+    //https://www.baeldung.com/spring-data-derived-queries
+    // TODO: 30.11.2023 jako pierwsze +test
 //
 //    Optional<T> create(T t);
 //
