@@ -29,13 +29,50 @@ class BookServiceTest {
         BookModel createdBookModel = createdBookModelOptional.get();
 
 
-
         //then
         Assertions.assertAll(
                 () -> Assertions.assertNotNull(createdBookModelOptional, "createdBookModelOptional is null"),
                 () -> Assertions.assertNotNull(createdBookModel, "createdBookModel is null"),
                 () -> Assertions.assertNotNull(createdBookModel.getIsbn(), "createdBookModel.getIsbn() is null")
         );
+    }
+
+    @Test
+    void createWithNullIsbn() throws BookException {
+        //given
+        BookModel bookModel = new BookModel();
+        bookModel.setIsbn(null);
+        bookModel.setTitle("Title 1");
+        bookModel.setPages(150);
+
+        //when
+        Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
+        BookModel createdBookModel = createdBookModelOptional.get();
+        String isbn = createdBookModel.getIsbn();
+
+        //then
+        Assertions.assertNotNull(isbn, "isbn is null");
+
+    }
+
+    @Test
+    void createIsbnAlreadyExists() {
+        //given
+        BookModel bookModel = new BookModel();
+        bookModel.setIsbn("978-83-142305-2-1");
+        bookModel.setTitle("Title 1");
+        bookModel.setPages(150);
+
+        //when
+        Optional<BookModel> createdBookModelOptional = null;
+        
+        //then
+        try {
+            createdBookModelOptional = bookService.create(bookModel);
+        } catch (BookException e) {
+            Assertions.assertEquals(e.getMessage(), "Isbn already exists");
+        }
+
     }
 }
 // TODO: 30.11.2023 create tests for all if-s in BookService (4)

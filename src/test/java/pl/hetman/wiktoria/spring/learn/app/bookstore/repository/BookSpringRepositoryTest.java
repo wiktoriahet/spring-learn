@@ -14,7 +14,7 @@ class BookSpringRepositoryTest {
     private BookSpringRepository bookSpringRepository;
 
     @Test
-    void create(){
+    void create() {
         //given
         BookEntity entity = new BookEntity();
         entity.setIsbn(IsbnGenerator.generateIsbn().toString());
@@ -30,7 +30,7 @@ class BookSpringRepositoryTest {
     }
 
     @Test
-    void createAndFindByIsbn(){
+    void createAndFindByIsbn() {
         //given
         BookEntity entity = new BookEntity();
         entity.setIsbn(IsbnGenerator.generateIsbn().toString());
@@ -43,7 +43,7 @@ class BookSpringRepositoryTest {
 
         //then
         Assertions.assertAll(
-                ()->Assertions.assertNotNull(foundBookEntity, "foundBookEntity is null")
+                () -> Assertions.assertNotNull(foundBookEntity, "foundBookEntity is null")
         );
 
     }
