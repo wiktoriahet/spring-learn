@@ -4,8 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.hetman.wiktoria.spring.learn.app.bookstore.isbngenerator.IsbnGenerator;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookException;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
+
+import java.util.Optional;
 
 @SpringBootTest
 class BookServiceTest {
@@ -17,17 +20,21 @@ class BookServiceTest {
     void create() throws BookException {
         //given
         BookModel bookModel = new BookModel();
-        bookModel.setId(9L);
-        bookModel.setTitle("Title");
-        bookModel.setPages(100);
+        bookModel.setIsbn(IsbnGenerator.generateIsbn().toString());
+        bookModel.setTitle("Title 1");
+        bookModel.setPages(150);
 
         //when
-        BookModel savedBookModel = bookService.create(bookModel);
+        Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
+        BookModel createdBookModel = createdBookModelOptional.get();
+
+
 
         //then
         Assertions.assertAll(
-                () -> Assertions.assertNotNull(savedBookModel, "savedBookModel"),
-                () -> Assertions.assertNotNull(savedBookModel.getTitle(), "savedBookModel.getTitle()")
+                () -> Assertions.assertNotNull(createdBookModelOptional, "createdBookModelOptional is null"),
+                () -> Assertions.assertNotNull(createdBookModel, "createdBookModel is null"),
+                () -> Assertions.assertNotNull(createdBookModel.getIsbn(), "createdBookModel.getIsbn() is null")
         );
     }
 }

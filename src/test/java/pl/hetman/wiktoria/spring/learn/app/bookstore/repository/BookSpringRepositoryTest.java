@@ -39,7 +39,7 @@ class BookSpringRepositoryTest {
         BookEntity savedBookEntity = bookSpringRepository.save(entity);
 
         //when
-        BookEntity foundBookEntity = bookSpringRepository.findByIsbn(savedBookEntity.getIsbn());
+        BookEntity foundBookEntity = bookSpringRepository.findByIsbnIs(savedBookEntity.getIsbn());
 
         //then
         Assertions.assertAll(
