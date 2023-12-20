@@ -1,6 +1,7 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.web.service;
 
 import org.springframework.stereotype.Service;
+import pl.hetman.wiktoria.spring.learn.app.bookstore.isbngenerator.IsbnGenerator;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.BookSpringRepository;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity.BookEntity;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookException;
@@ -8,7 +9,6 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.mapper.BookMapper;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 @Service
@@ -30,8 +30,9 @@ public class BookService {
 
         String isbn = bookModel.getIsbn();
         if (isbn != null) {
-            // TODO: 30.11.2023 stworzyć oddzielną klasę generującą isbn
-            String randomIsbn = UUID.randomUUID().toString();
+            // TODO: 30.11.2023 stworzyć oddzielną klasę generującą isbn[x]
+            //String randomIsbn = UUID.randomUUID().toString();
+            String randomIsbn = IsbnGenerator.generateIsbn().toString();
             bookModel.setIsbn(randomIsbn);
         } else {
             BookEntity foundBookEntity = bookSpringRepository.findByIsbn(isbn);
