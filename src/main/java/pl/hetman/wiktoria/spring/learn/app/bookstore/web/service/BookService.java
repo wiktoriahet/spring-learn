@@ -9,6 +9,7 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.mapper.BookMapper;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -25,17 +26,44 @@ public class BookService {
     }
 
     // TODO: 30.11.2023 zamiast BookModel zwracać optional
-    public BookModel create(BookModel bookModel) throws BookException {
+//    public BookModel create(BookModel bookModel) throws BookException {
+//        LOGGER.info("create(" + bookModel + ")");
+//
+//        String isbn = bookModel.getIsbn();
+//        if (isbn != null) {
+//            // TODO: 30.11.2023 stworzyć oddzielną klasę generującą isbn[x]
+//            //String randomIsbn = UUID.randomUUID().toString();
+//            String randomIsbn = IsbnGenerator.generateIsbn().toString();
+//            bookModel.setIsbn(randomIsbn);
+//        } else {
+//            BookEntity foundBookEntity = bookSpringRepository.findByIsbnIs(isbn);
+//            if (foundBookEntity != null) {
+//                throw new BookException("Isbn already exists");
+//            } else {
+//                BookEntity bookEntity = bookMapper.from(bookModel);
+//                BookEntity savedBookEntity = bookSpringRepository.save(bookEntity);
+//                BookModel savedBookModel = bookMapper.from(savedBookEntity);
+//
+//                LOGGER.info("create(...)");
+//                return savedBookModel;
+//            }
+//        }
+//
+//        LOGGER.info("create(...) = " + null);
+//        return null;
+//    }
+
+    public Optional<BookModel> create(BookModel bookModel) throws BookException {
         LOGGER.info("create(" + bookModel + ")");
 
         String isbn = bookModel.getIsbn();
-        if (isbn != null) {
+        if (isbn == null) {
             // TODO: 30.11.2023 stworzyć oddzielną klasę generującą isbn[x]
             //String randomIsbn = UUID.randomUUID().toString();
             String randomIsbn = IsbnGenerator.generateIsbn().toString();
             bookModel.setIsbn(randomIsbn);
         } else {
-            BookEntity foundBookEntity = bookSpringRepository.findByIsbn(isbn);
+            BookEntity foundBookEntity = bookSpringRepository.findByIsbnIs(isbn);
             if (foundBookEntity != null) {
                 throw new BookException("Isbn already exists");
             } else {
@@ -43,15 +71,14 @@ public class BookService {
                 BookEntity savedBookEntity = bookSpringRepository.save(bookEntity);
                 BookModel savedBookModel = bookMapper.from(savedBookEntity);
 
-                LOGGER.info("create(...)");
-                return savedBookModel;
+                LOGGER.info("create(...) = " + Optional.of(savedBookModel));
+                return Optional.of(savedBookModel);
             }
         }
 
-        LOGGER.info("create(...) = " + null);
+        LOGGER.info("create(...) = " + Optional.empty());
         return null;
     }
-
 
     public BookModel read(Long id) {
         LOGGER.info("read(" + id + ")");
