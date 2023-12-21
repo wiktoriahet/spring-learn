@@ -59,7 +59,6 @@ public class BookService {
         String isbn = bookModel.getIsbn();
         if (isbn == null) {
             // TODO: 30.11.2023 stworzyć oddzielną klasę generującą isbn[x]
-            //String randomIsbn = UUID.randomUUID().toString();
             String randomIsbn = IsbnGenerator.generateIsbn().toString();
             bookModel.setIsbn(randomIsbn);
 
