@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookException;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.BookService;
 
@@ -28,7 +29,7 @@ public class BookController {
     //http://localhost:8080/books?title=Vampire&pages=230
     @GetMapping
     //public void read(String title, String pages) {
-    public String read(BookModel bookModel) {
+    public String read(BookModel bookModel) throws BookException {
 //        LOGGER.info("read(" + title + ")");
 //        LOGGER.info("read(" + pages + ")");
         LOGGER.info("read(" + bookModel + ")");

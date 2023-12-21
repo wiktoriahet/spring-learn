@@ -86,13 +86,17 @@ public class BookService {
 //        return null;
     }
 
-    public BookModel read(Long id) {
+    public BookModel read(Long id) throws BookException {
         LOGGER.info("read(" + id + ")");
-//        bookSpringRepository.read(id);
-        LOGGER.info("read(...)");
-        return null;
+        Optional<BookEntity> optionalBookEntity = bookSpringRepository.findById(id);
+        BookEntity bookEntity = optionalBookEntity.orElseThrow(
+                () -> new BookException("Book with given id does not exist: " + id));
+        BookModel bookModel = bookMapper.from(bookEntity);
+        LOGGER.info("read(...) = " + bookModel);
+        return bookModel;
     }
 
+    //todo 21.12.23 update i delete + testy
     public BookModel update(Long id, BookModel bookModel) {
         LOGGER.info("update(" + id + ", " + bookModel + ")");
         LOGGER.info("update(...)");
