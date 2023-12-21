@@ -26,7 +26,7 @@ class BookServiceTest {
 
         //when
         Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
-        BookModel createdBookModel = createdBookModelOptional.get();
+        BookModel createdBookModel = createdBookModelOptional.orElse(null);
 
 
         //then
@@ -47,7 +47,7 @@ class BookServiceTest {
 
         //when
         Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
-        BookModel createdBookModel = createdBookModelOptional.get();
+        BookModel createdBookModel = createdBookModelOptional.orElse(new BookModel());
         String isbn = createdBookModel.getIsbn();
 
         //then
@@ -65,8 +65,9 @@ class BookServiceTest {
 
         //when
         Optional<BookModel> createdBookModelOptional = null;
-        
+
         //then
+        // FIXME: użyć assertThrows()
         try {
             createdBookModelOptional = bookService.create(bookModel);
         } catch (BookException e) {
@@ -75,4 +76,4 @@ class BookServiceTest {
 
     }
 }
-// TODO: 30.11.2023 create tests for all if-s in BookService (4)
+// TODO: 30.11.2023 create tests for all if-s in BookService (x)
