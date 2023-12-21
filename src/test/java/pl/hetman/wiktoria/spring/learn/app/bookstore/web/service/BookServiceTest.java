@@ -28,7 +28,6 @@ class BookServiceTest {
         Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
         BookModel createdBookModel = createdBookModelOptional.orElse(null);
 
-
         //then
         Assertions.assertAll(
                 () -> Assertions.assertNotNull(createdBookModelOptional, "createdBookModelOptional is null"),
@@ -52,7 +51,6 @@ class BookServiceTest {
 
         //then
         Assertions.assertNotNull(isbn, "isbn is null");
-
     }
 
     @Test
@@ -73,7 +71,6 @@ class BookServiceTest {
         } catch (BookException e) {
             Assertions.assertEquals(e.getMessage(), "Isbn already exists");
         }
-
     }
 }
 // TODO: 30.11.2023 create tests for all if-s in BookService (x)
