@@ -65,12 +65,10 @@ class BookServiceTest {
         Optional<BookModel> createdBookModelOptional = null;
 
         //then
-        // FIXME: użyć assertThrows()
-        try {
-            createdBookModelOptional = bookService.create(bookModel);
-        } catch (BookException e) {
-            Assertions.assertEquals(e.getMessage(), "Isbn already exists");
-        }
+        // FIXME: użyć assertThrows() [x]
+
+        Assertions.assertThrows(BookException.class,
+                () -> bookService.create(bookModel));
     }
 }
 // TODO: 30.11.2023 create tests for all if-s in BookService (x)
