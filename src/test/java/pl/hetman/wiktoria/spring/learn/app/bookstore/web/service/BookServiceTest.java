@@ -20,7 +20,7 @@ class BookServiceTest {
     void create() throws BookException {
         //given
         BookModel bookModel = new BookModel();
-        bookModel.setIsbn(IsbnGenerator.generateIsbn().toString());
+        bookModel.setIsbn(IsbnGenerator.generateIsbn());
         bookModel.setTitle("Title 1");
         bookModel.setPages(150);
 
@@ -75,7 +75,7 @@ class BookServiceTest {
     void delete() throws BookException {
         //given
         BookModel bookModel = new BookModel();
-        bookModel.setIsbn(IsbnGenerator.generateIsbn().toString());
+        bookModel.setIsbn(IsbnGenerator.generateIsbn());
         bookModel.setTitle("Title 1");
         bookModel.setPages(150);
 
@@ -99,7 +99,7 @@ class BookServiceTest {
     void update() throws BookException{
         //given
         BookModel bookModel = new BookModel();
-        bookModel.setIsbn(IsbnGenerator.generateIsbn().toString());
+        bookModel.setIsbn(IsbnGenerator.generateIsbn());
         bookModel.setTitle("Title 1");
         bookModel.setPages(150);
 
@@ -107,7 +107,7 @@ class BookServiceTest {
         BookModel createdBookModel = createdBookModelOptional.orElse(null);
 
         BookModel updateBookModel = new BookModel();
-        updateBookModel.setIsbn(IsbnGenerator.generateIsbn().toString());
+        updateBookModel.setIsbn(IsbnGenerator.generateIsbn());
         updateBookModel.setTitle("Title 2");
         updateBookModel.setPages(200);
 

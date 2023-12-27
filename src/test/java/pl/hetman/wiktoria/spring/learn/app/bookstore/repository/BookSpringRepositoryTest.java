@@ -17,7 +17,7 @@ class BookSpringRepositoryTest {
     void create() {
         //given
         BookEntity entity = new BookEntity();
-        entity.setIsbn(IsbnGenerator.generateIsbn().toString());
+        entity.setIsbn(IsbnGenerator.generateIsbn());
         entity.setPages(100);
         entity.setTitle("title");
 
@@ -33,7 +33,7 @@ class BookSpringRepositoryTest {
     void createAndFindByIsbn() {
         //given
         BookEntity entity = new BookEntity();
-        entity.setIsbn(IsbnGenerator.generateIsbn().toString());
+        entity.setIsbn(IsbnGenerator.generateIsbn());
         entity.setPages(200);
         entity.setTitle("new title");
         BookEntity savedBookEntity = bookSpringRepository.save(entity);
