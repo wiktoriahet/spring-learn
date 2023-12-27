@@ -70,5 +70,29 @@ class BookServiceTest {
         Assertions.assertThrows(BookException.class,
                 () -> bookService.create(bookModel));
     }
+
+    @Test
+    void delete() throws BookException {
+        //given
+        BookModel bookModel = new BookModel();
+        bookModel.setIsbn(IsbnGenerator.generateIsbn().toString());
+        bookModel.setTitle("Title 1");
+        bookModel.setPages(150);
+
+        Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
+        BookModel createdBookModel = createdBookModelOptional.orElse(null);
+
+        //when
+        boolean deletedBookModel = bookService.delete(createdBookModel.getId());
+
+        //then
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(true, deletedBookModel, "deletedBookModel is false"),
+                () -> Assertions.assertThrows(
+                        BookException.class,
+                        () -> bookService.read(createdBookModel.getId()))
+        );
+
+    }
 }
 // TODO: 30.11.2023 create tests for all if-s in BookService (x)

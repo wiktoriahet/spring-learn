@@ -103,10 +103,15 @@ public class BookService {
         return null;
     }
 
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws BookException {
         LOGGER.info("delete(" + id + ")");
-        LOGGER.info("delete(...)");
-        return false;
+        if (id == null) {
+            throw new BookException("Book with given id does not exist: " + id);
+        } else {
+            bookSpringRepository.deleteById(id);
+            LOGGER.info("delete(...)");
+            return true;
+        }
     }
 
     public List<BookModel> list() {
