@@ -94,5 +94,29 @@ class BookServiceTest {
         );
 
     }
+
+    @Test
+    void update() throws BookException{
+        //given
+        BookModel bookModel = new BookModel();
+        bookModel.setIsbn(IsbnGenerator.generateIsbn().toString());
+        bookModel.setTitle("Title 1");
+        bookModel.setPages(150);
+
+        Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
+        BookModel createdBookModel = createdBookModelOptional.orElse(null);
+
+        BookModel updateBookModel = new BookModel();
+        updateBookModel.setIsbn(IsbnGenerator.generateIsbn().toString());
+        updateBookModel.setTitle("Title 2");
+        updateBookModel.setPages(200);
+
+        //when
+        BookModel updatedBookModel = bookService.update(createdBookModel.getId(), updateBookModel).orElse(null);
+
+        //then
+        Assertions.assertNotNull(updatedBookModel, "updatedBookModel is null");
+
+    }
 }
 // TODO: 30.11.2023 create tests for all if-s in BookService (x)
