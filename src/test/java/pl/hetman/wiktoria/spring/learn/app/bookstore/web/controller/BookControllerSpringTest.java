@@ -4,9 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookException;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class BookControllerSpringTest {
@@ -15,7 +14,7 @@ class BookControllerSpringTest {
     private BookController bookController;
 
     @Test
-    void read() {
+    void read() throws BookException {
         //given
         BookModel bookModel = new BookModel();
 
@@ -27,6 +26,9 @@ class BookControllerSpringTest {
 
 
     }
+    //todo https://spring.io/guides/gs/testing-web/ dla book controller
+    // napisać 3 rodzaje testów
+    // z artykułu
 
     @Test
     void create() {

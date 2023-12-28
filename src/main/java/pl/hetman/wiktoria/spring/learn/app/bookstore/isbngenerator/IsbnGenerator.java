@@ -19,7 +19,7 @@ public class IsbnGenerator {
     // pula 100000 - 00000-99999
     //check digit - suma cyfr pomnozonych przez ich pozycje, modulo 11, 10 prezentowane jako x
 
-    public static StringBuilder generateIsbn() {
+    public static String generateIsbn() {
         LOGGER.info("generateIsbn()");
 
         Long prefix = null;
@@ -103,7 +103,7 @@ public class IsbnGenerator {
                 .append(checkDigit);
 
         LOGGER.info("generateIsbn(...)");
-        return stringBuilder;
+        return stringBuilder.toString();
     }
 
 }

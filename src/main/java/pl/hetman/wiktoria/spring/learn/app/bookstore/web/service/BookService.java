@@ -59,7 +59,7 @@ public class BookService {
         String isbn = bookModel.getIsbn();
         if (isbn == null) {
             // TODO: 30.11.2023 stworzyć oddzielną klasę generującą isbn[x]
-            String randomIsbn = IsbnGenerator.generateIsbn().toString();
+            String randomIsbn = IsbnGenerator.generateIsbn();
             bookModel.setIsbn(randomIsbn);
 
             BookEntity bookEntity = bookMapper.from(bookModel);
@@ -86,23 +86,42 @@ public class BookService {
 //        return null;
     }
 
-    public BookModel read(Long id) {
+    public BookModel read(Long id) throws BookException {
         LOGGER.info("read(" + id + ")");
-//        bookSpringRepository.read(id);
-        LOGGER.info("read(...)");
-        return null;
+        Optional<BookEntity> optionalBookEntity = bookSpringRepository.findById(id);
+        BookEntity bookEntity = optionalBookEntity.orElseThrow(
+                () -> new BookException("Book with given id does not exist: " + id));
+        BookModel bookModel = bookMapper.from(bookEntity);
+        LOGGER.info("read(...) = " + bookModel);
+        return bookModel;
     }
 
-    public BookModel update(Long id, BookModel bookModel) {
+    //todo 21.12.23 update i delete + testy [x]
+    public Optional<BookModel> update(Long id, BookModel bookModel) throws BookException {
         LOGGER.info("update(" + id + ", " + bookModel + ")");
-        LOGGER.info("update(...)");
-        return null;
+//        if (id == null) {
+//            throw new BookException("Book with given id does not exist: " + id);
+//        } else if (bookModel == null) {
+//            throw new BookException("Given bookModel does not exist");
+//        } else {
+            bookModel.setId(id);
+            BookEntity bookEntity = bookMapper.from(bookModel);
+            BookEntity updatedBookEntity = bookSpringRepository.save(bookEntity);
+            BookModel updatedBookModel = bookMapper.from(updatedBookEntity);
+            LOGGER.info("update(...)");
+            return Optional.of(updatedBookModel);
+        //}
     }
 
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws BookException {
         LOGGER.info("delete(" + id + ")");
-        LOGGER.info("delete(...)");
-        return false;
+//        if (id == null) {
+//            throw new BookException("Book with given id does not exist: " + id);
+//        } else {
+            bookSpringRepository.deleteById(id);
+            LOGGER.info("delete(...)");
+            return true;
+        //}
     }
 
     public List<BookModel> list() {

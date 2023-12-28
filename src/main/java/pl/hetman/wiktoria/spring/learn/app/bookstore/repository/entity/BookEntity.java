@@ -11,6 +11,8 @@ public class BookEntity {
 
     @Id
     @GeneratedValue
+//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "BOOK_ENTITY_GENERATOR")
+//    @SequenceGenerator(name = "BOOK_ENTITY_GENERATOR", sequenceName = "BOOK_ENTITY_SEQ")
     private Long id;
     private String isbn;
     private String title;
