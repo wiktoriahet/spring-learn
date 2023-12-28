@@ -99,29 +99,29 @@ public class BookService {
     //todo 21.12.23 update i delete + testy [x]
     public Optional<BookModel> update(Long id, BookModel bookModel) throws BookException {
         LOGGER.info("update(" + id + ", " + bookModel + ")");
-        if (id == null) {
-            throw new BookException("Book with given id does not exist: " + id);
-        } else if (bookModel == null) {
-            throw new BookException("Given bookModel does not exist");
-        } else {
+//        if (id == null) {
+//            throw new BookException("Book with given id does not exist: " + id);
+//        } else if (bookModel == null) {
+//            throw new BookException("Given bookModel does not exist");
+//        } else {
             bookModel.setId(id);
             BookEntity bookEntity = bookMapper.from(bookModel);
             BookEntity updatedBookEntity = bookSpringRepository.save(bookEntity);
             BookModel updatedBookModel = bookMapper.from(updatedBookEntity);
             LOGGER.info("update(...)");
             return Optional.of(updatedBookModel);
-        }
+        //}
     }
 
     public boolean delete(Long id) throws BookException {
         LOGGER.info("delete(" + id + ")");
-        if (id == null) {
-            throw new BookException("Book with given id does not exist: " + id);
-        } else {
+//        if (id == null) {
+//            throw new BookException("Book with given id does not exist: " + id);
+//        } else {
             bookSpringRepository.deleteById(id);
             LOGGER.info("delete(...)");
             return true;
-        }
+        //}
     }
 
     public List<BookModel> list() {
