@@ -20,7 +20,7 @@ class BookServiceTest {
     void create() throws BookException {
         //given
         BookModel bookModel = new BookModel();
-        bookModel.setIsbn(IsbnGenerator.generateIsbn().toString());
+        bookModel.setIsbn(IsbnGenerator.generateIsbn());
         bookModel.setTitle("Title 1");
         bookModel.setPages(150);
 
@@ -65,12 +65,58 @@ class BookServiceTest {
         Optional<BookModel> createdBookModelOptional = null;
 
         //then
-        // FIXME: użyć assertThrows()
-        try {
-            createdBookModelOptional = bookService.create(bookModel);
-        } catch (BookException e) {
-            Assertions.assertEquals(e.getMessage(), "Isbn already exists");
-        }
+        // FIXME: użyć assertThrows() [x]
+
+        Assertions.assertThrows(BookException.class,
+                () -> bookService.create(bookModel));
+    }
+
+    @Test
+    void delete() throws BookException {
+        //given
+        BookModel bookModel = new BookModel();
+        bookModel.setIsbn(IsbnGenerator.generateIsbn());
+        bookModel.setTitle("Title 1");
+        bookModel.setPages(150);
+
+        Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
+        BookModel createdBookModel = createdBookModelOptional.orElse(null);
+
+        //when
+        boolean deletedBookModel = bookService.delete(createdBookModel.getId());
+
+        //then
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(true, deletedBookModel, "deletedBookModel is false"),
+                () -> Assertions.assertThrows(
+                        BookException.class,
+                        () -> bookService.read(createdBookModel.getId()))
+        );
+
+    }
+
+    @Test
+    void update() throws BookException{
+        //given
+        BookModel bookModel = new BookModel();
+        bookModel.setIsbn(IsbnGenerator.generateIsbn());
+        bookModel.setTitle("Title 1");
+        bookModel.setPages(150);
+
+        Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
+        BookModel createdBookModel = createdBookModelOptional.orElse(null);
+
+        BookModel updateBookModel = new BookModel();
+        updateBookModel.setIsbn(IsbnGenerator.generateIsbn());
+        updateBookModel.setTitle("Title 2");
+        updateBookModel.setPages(200);
+
+        //when
+        BookModel updatedBookModel = bookService.update(createdBookModel.getId(), updateBookModel).orElse(null);
+
+        //then
+        Assertions.assertNotNull(updatedBookModel, "updatedBookModel is null");
+
     }
 }
 // TODO: 30.11.2023 create tests for all if-s in BookService (x)
