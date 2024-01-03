@@ -1,11 +1,15 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.web.model;
 
-public class BookModel {
+import jakarta.validation.constraints.NotEmpty;
 
+public class BookModel {
+    //todo dodać walidację dla pages
     private Long id;
     private String isbn;
+    @NotEmpty(message = "Wypełnij to pole!")
     private String title;
-    private Integer pages;
+    @NotEmpty(message = "Wypełnij to pole!")
+    private String pages;
 
     public BookModel() {
     }
@@ -34,11 +38,11 @@ public class BookModel {
         this.title = title;
     }
 
-    public Integer getPages() {
+    public String getPages() {
         return pages;
     }
 
-    public void setPages(Integer pages) {
+    public void setPages(String pages) {
         this.pages = pages;
     }
 

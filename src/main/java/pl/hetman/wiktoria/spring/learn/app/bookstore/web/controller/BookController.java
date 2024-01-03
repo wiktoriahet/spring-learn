@@ -1,8 +1,11 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.web.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookException;
@@ -19,12 +22,11 @@ public class BookController {
     public static final Logger LOGGER = Logger.getLogger(BookController.class.getName());
 
     private BookService bookService; //dependency
+    private List<BookModel> books = new ArrayList<>();
 
     public BookController(BookService bookService) { //injection
         this.bookService = bookService;
     }
-
-    private List<BookModel> books = new ArrayList<>();
 
     //http://localhost:8080/books?title=Vampire&pages=230
     @GetMapping
@@ -49,12 +51,20 @@ public class BookController {
     }
 
     @PostMapping
-    public String create(BookModel bookModel) {
+    public String create(
+            @Valid @ModelAttribute(name = "book") BookModel book,
+            BindingResult bindingResult)
+                throws BookException {
         //public String create(String title, Integer pages) {
-        LOGGER.info("create(" + bookModel + ")");
+        LOGGER.info("create(" + book + ")");
 //        LOGGER.info("create(" + title + ")");
 //        LOGGER.info("create(" + pages + ")");
-        books.add(bookModel);
+        //books.add(book);
+        if (bindingResult.hasErrors()) {
+            LOGGER.warning("ERRORS!!! " + bindingResult.getAllErrors());
+            return "app/bookstore/create-book.html";
+        }
+        bookService.create(book);
         LOGGER.info("create(...)");
         //return "app/bookstore/books.html";
         return "redirect:/books/list";
