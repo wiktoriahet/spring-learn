@@ -28,7 +28,7 @@ class BookControllerSpringTest {
     }
     //todo https://spring.io/guides/gs/testing-web/ dla book controller
     // napisać 3 rodzaje testów
-    // z artykułu
+    // z artykułu [x]
 
     @Test
     void create() {
