@@ -19,7 +19,7 @@ class BookMapperTest {
         BookModel bookModel = new BookModel();
         bookModel.setId(9L);
         bookModel.setTitle("Title");
-        bookModel.setPages(100);
+        bookModel.setPages("100");
 
         //when
         BookEntity mappedBookEntity = bookMapper.from(bookModel);
@@ -37,7 +37,7 @@ class BookMapperTest {
         BookModel bookModel = new BookModel();
         bookModel.setId(9L);
         bookModel.setTitle("Title");
-        bookModel.setPages(100);
+        bookModel.setPages("100");
         BookEntity mappedBookEntity = bookMapper.from(bookModel);
 
         //when

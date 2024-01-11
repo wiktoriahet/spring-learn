@@ -18,7 +18,9 @@
             Pages: <input type="text" th:field="${book.pages}">
             <td th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}">Pages Error</td>
         </div>
-        <button type="submit">Save</button>
+        <div>
+            <button type="submit">Save</button>
+        </div>
     </form>
 </div>
 </body>

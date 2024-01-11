@@ -36,7 +36,7 @@ public class BookControllerWebMockTest {
         BookModel bookModel = new BookModel();
         //bookModel.setIsbn(IsbnGenerator.generateIsbn());
         bookModel.setTitle("Title title");
-        bookModel.setPages(230);
+        bookModel.setPages("230");
 
         when(bookService.create(bookModel)).thenReturn(Optional.of(bookModel));
         this.mockMvc

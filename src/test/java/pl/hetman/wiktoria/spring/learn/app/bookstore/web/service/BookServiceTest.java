@@ -22,7 +22,7 @@ class BookServiceTest {
         BookModel bookModel = new BookModel();
         bookModel.setIsbn(IsbnGenerator.generateIsbn());
         bookModel.setTitle("Title 1");
-        bookModel.setPages(150);
+        bookModel.setPages("150");
 
         //when
         Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
@@ -42,7 +42,7 @@ class BookServiceTest {
         BookModel bookModel = new BookModel();
         bookModel.setIsbn(null);
         bookModel.setTitle("Title 1");
-        bookModel.setPages(150);
+        bookModel.setPages("150");
 
         //when
         Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
@@ -59,7 +59,7 @@ class BookServiceTest {
         BookModel bookModel = new BookModel();
         bookModel.setIsbn("978-83-142305-2-1");
         bookModel.setTitle("Title 1");
-        bookModel.setPages(150);
+        bookModel.setPages("150");
 
         //when
         Optional<BookModel> createdBookModelOptional = null;
@@ -77,7 +77,7 @@ class BookServiceTest {
         BookModel bookModel = new BookModel();
         bookModel.setIsbn(IsbnGenerator.generateIsbn());
         bookModel.setTitle("Title 1");
-        bookModel.setPages(150);
+        bookModel.setPages("150");
 
         Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
         BookModel createdBookModel = createdBookModelOptional.orElse(null);
@@ -96,12 +96,12 @@ class BookServiceTest {
     }
 
     @Test
-    void update() throws BookException{
+    void update() throws BookException {
         //given
         BookModel bookModel = new BookModel();
         bookModel.setIsbn(IsbnGenerator.generateIsbn());
         bookModel.setTitle("Title 1");
-        bookModel.setPages(150);
+        bookModel.setPages("150");
 
         Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
         BookModel createdBookModel = createdBookModelOptional.orElse(null);
@@ -109,7 +109,7 @@ class BookServiceTest {
         BookModel updateBookModel = new BookModel();
         updateBookModel.setIsbn(IsbnGenerator.generateIsbn());
         updateBookModel.setTitle("Title 2");
-        updateBookModel.setPages(200);
+        updateBookModel.setPages("200");
 
         //when
         BookModel updatedBookModel = bookService.update(createdBookModel.getId(), updateBookModel).orElse(null);
@@ -117,6 +117,54 @@ class BookServiceTest {
         //then
         Assertions.assertNotNull(updatedBookModel, "updatedBookModel is null");
 
+    }
+
+    @Test
+    void updateWhenNullModel() throws BookException {
+        //given
+        BookModel bookModel = new BookModel();
+        bookModel.setIsbn(null);
+        bookModel.setTitle(null);
+        bookModel.setPages(null);
+
+        Optional<BookModel> createdBookModelOptional = bookService.create(bookModel);
+        BookModel createdBookModel = createdBookModelOptional.orElse(null);
+        createdBookModel.setId(null);
+
+        BookModel updateBookModel = new BookModel();
+        updateBookModel.setIsbn(IsbnGenerator.generateIsbn());
+        updateBookModel.setTitle("Title 2");
+        updateBookModel.setPages("200");
+        System.out.println(updateBookModel.getId());
+        //todo jeśli się nie odkomentuje null checków w serwisie
+        //todo to nie rzuca żadnego błędu
+
+        //when
+
+        //then
+        Assertions.assertThrows(
+                BookException.class,
+                () -> bookService.update(createdBookModel.getId(), updateBookModel).orElse(null)
+        );
+
+    }
+
+    @Test
+    void updateWhenNullId() throws BookException {
+        //given
+        BookModel updateBookModel = new BookModel();
+        updateBookModel.setIsbn(IsbnGenerator.generateIsbn());
+        updateBookModel.setTitle("Title 2");
+        updateBookModel.setPages("200");
+
+        //when
+
+
+        //then
+        Assertions.assertThrows(
+                BookException.class,
+                ()->bookService.update(null, updateBookModel)
+        );
     }
 }
 // TODO: 30.11.2023 create tests for all if-s in BookService (x)
