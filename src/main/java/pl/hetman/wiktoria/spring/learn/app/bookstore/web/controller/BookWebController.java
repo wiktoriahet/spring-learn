@@ -18,13 +18,13 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping(value = "/books")
-public class BookController {
-    public static final Logger LOGGER = Logger.getLogger(BookController.class.getName());
+public class BookWebController {
+    public static final Logger LOGGER = Logger.getLogger(BookWebController.class.getName());
 
     private BookService bookService; //dependency
     private List<BookModel> books = new ArrayList<>();
 
-    public BookController(BookService bookService) { //injection
+    public BookWebController(BookService bookService) { //injection
         this.bookService = bookService;
     }
 

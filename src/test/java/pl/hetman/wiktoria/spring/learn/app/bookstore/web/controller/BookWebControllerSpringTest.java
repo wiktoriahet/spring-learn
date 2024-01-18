@@ -8,10 +8,10 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookException
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 
 @SpringBootTest
-class BookControllerSpringTest {
+class BookWebControllerSpringTest {
 
     @Autowired
-    private BookController bookController;
+    private BookWebController bookWebController;
 
     @Test
     void read() throws BookException {
@@ -19,7 +19,7 @@ class BookControllerSpringTest {
         BookModel bookModel = new BookModel();
 
         //when
-        String read = bookController.read(bookModel);
+        String read = bookWebController.read(bookModel);
 
         //then
         Assertions.assertNotNull(read, "read is null");
