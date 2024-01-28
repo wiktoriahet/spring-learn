@@ -3,7 +3,7 @@ package pl.hetman.wiktoria.spring.learn.app.bookstore.web.model;
 import jakarta.validation.constraints.NotEmpty;
 
 public class BookModel {
-    //todo dodać walidację dla pages
+    //[x]todo dodać walidację dla pages
     private Long id;
     private String isbn;
     @NotEmpty(message = "Wypełnij to pole!")
