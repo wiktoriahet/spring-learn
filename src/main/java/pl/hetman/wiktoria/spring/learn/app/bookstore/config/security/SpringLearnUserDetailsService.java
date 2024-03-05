@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 @Service
 public class SpringLearnUserDetailsService implements UserDetailsService {
 
+    //https://www.md5hashgenerator.com/
+
     public static final Logger LOGGER = Logger.getLogger(SpringLearnUserDetailsService.class.getName());
     private static Map<String, String> users = new HashMap<>();
 
