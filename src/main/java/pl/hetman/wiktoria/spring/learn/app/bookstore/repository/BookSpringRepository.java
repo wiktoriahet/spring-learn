@@ -9,7 +9,7 @@ public interface BookSpringRepository extends JpaRepository<BookEntity, Long> {
     BookEntity findByIsbnIs(String isbn); // derived query method
     //https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html
     //https://www.baeldung.com/spring-data-derived-queries
-    // TODO: 30.11.2023 jako pierwsze [x] +test [x]
+
 //
 //    Optional<T> create(T t);
 //

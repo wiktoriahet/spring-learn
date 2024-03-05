@@ -57,8 +57,3 @@ public class BookWebControllerHttpRequestTest { //jakbym otwierała stronę prze
     }
 
 }
-
-//todo 11,01,2024
-// stworzyć nową aplikację na start.spring.io
-// stworzyć i zaimplementować warstwy kontroler, serwis, repository, mapper
-// dwa modele w aplikacji

@@ -65,7 +65,6 @@ class BookServiceTest {
         Optional<BookModel> createdBookModelOptional = null;
 
         //then
-        // FIXME: użyć assertThrows() [x]
 
         Assertions.assertThrows(BookException.class,
                 () -> bookService.create(bookModel));
@@ -136,8 +135,6 @@ class BookServiceTest {
         updateBookModel.setTitle("Title 2");
         updateBookModel.setPages("200");
         System.out.println(updateBookModel.getId());
-        //todo jeśli się nie odkomentuje null checków w serwisie
-        //todo to nie rzuca żadnego błędu
 
         //when
 
@@ -167,4 +164,3 @@ class BookServiceTest {
         );
     }
 }
-// TODO: 30.11.2023 create tests for all if-s in BookService (x)

@@ -18,12 +18,6 @@ public class BookMapper {
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.STRICT);
         BookEntity mappedBookEntity = modelMapper.map(bookModel, BookEntity.class);
-
-//        BookEntity bookEntity = new BookEntity();
-
-//        bookEntity.setId(bookModel.getId());
-//        bookEntity.setTitle(bookModel.getTitle());
-//        bookEntity.setPages(bookModel.getPages());
         LOGGER.info("from()");
         return mappedBookEntity;
     }
@@ -35,11 +29,7 @@ public class BookMapper {
         LOGGER.info("from(...)");
         return mappedBookModel;
     }
-    // TODO: 30.11.2023 dodać konfigurację model mapper strict [x]
 
-// TODO: 23.11.2023 zamienić implementację metody from na użycie ModelMapper [x]
     //https://modelmapper.org/ [x]
-    //stworzyć repository i service dla wybranego modelu [x]
-    //loggery
-    //przenieść do social-act-tr
+
 }

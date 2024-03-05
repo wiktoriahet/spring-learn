@@ -18,53 +18,25 @@ public class BookService {
     private static final Logger LOGGER = Logger.getLogger(BookService.class.getName());
 
     private BookSpringRepository bookSpringRepository;
-    private BookMapper bookMapper;
+    private BookMapper vipBookMapper;
 
-    public BookService(BookSpringRepository bookSpringRepository, BookMapper bookMapper) {
+    public BookService(BookSpringRepository bookSpringRepository, BookMapper vipBookMapper) {
         this.bookSpringRepository = bookSpringRepository;
-        this.bookMapper = bookMapper;
+        this.vipBookMapper = vipBookMapper;
     }
-
-    // TODO: 30.11.2023 zamiast BookModel zwracać optional[x]
-//    public BookModel create(BookModel bookModel) throws BookException {
-//        LOGGER.info("create(" + bookModel + ")");
-//
-//        String isbn = bookModel.getIsbn();
-//        if (isbn != null) {
-//            // TODO: 30.11.2023 stworzyć oddzielną klasę generującą isbn[x]
-//            //String randomIsbn = UUID.randomUUID().toString();
-//            String randomIsbn = IsbnGenerator.generateIsbn().toString();
-//            bookModel.setIsbn(randomIsbn);
-//        } else {
-//            BookEntity foundBookEntity = bookSpringRepository.findByIsbnIs(isbn);
-//            if (foundBookEntity != null) {
-//                throw new BookException("Isbn already exists");
-//            } else {
-//                BookEntity bookEntity = bookMapper.from(bookModel);
-//                BookEntity savedBookEntity = bookSpringRepository.save(bookEntity);
-//                BookModel savedBookModel = bookMapper.from(savedBookEntity);
-//
-//                LOGGER.info("create(...)");
-//                return savedBookModel;
-//            }
-//        }
-//
-//        LOGGER.info("create(...) = " + null);
-//        return null;
-//    }
 
     public Optional<BookModel> create(BookModel bookModel) throws BookException {
         LOGGER.info("create(" + bookModel + ")");
 
         String isbn = bookModel.getIsbn();
         if (isbn == null) {
-            // TODO: 30.11.2023 stworzyć oddzielną klasę generującą isbn[x]
+
             String randomIsbn = IsbnGenerator.generateIsbn();
             bookModel.setIsbn(randomIsbn);
 
-            BookEntity bookEntity = bookMapper.from(bookModel);
+            BookEntity bookEntity = vipBookMapper.from(bookModel);
             BookEntity savedBookEntity = bookSpringRepository.save(bookEntity);
-            BookModel savedBookModel = bookMapper.from(savedBookEntity);
+            BookModel savedBookModel = vipBookMapper.from(savedBookEntity);
 
             LOGGER.info("create(...) = " + Optional.of(savedBookModel));
             return Optional.of(savedBookModel);
@@ -73,9 +45,9 @@ public class BookService {
             if (foundBookEntity != null) {
                 throw new BookException("Isbn already exists");
             } else {
-                BookEntity bookEntity = bookMapper.from(bookModel);
+                BookEntity bookEntity = vipBookMapper.from(bookModel);
                 BookEntity savedBookEntity = bookSpringRepository.save(bookEntity);
-                BookModel savedBookModel = bookMapper.from(savedBookEntity);
+                BookModel savedBookModel = vipBookMapper.from(savedBookEntity);
 
                 LOGGER.info("create(...) = " + Optional.of(savedBookModel));
                 return Optional.of(savedBookModel);
@@ -91,12 +63,11 @@ public class BookService {
         Optional<BookEntity> optionalBookEntity = bookSpringRepository.findById(id);
         BookEntity bookEntity = optionalBookEntity.orElseThrow(
                 () -> new BookException("Book with given id does not exist: " + id));
-        BookModel bookModel = bookMapper.from(bookEntity);
+        BookModel bookModel = vipBookMapper.from(bookEntity);
         LOGGER.info("read(...) = " + bookModel);
         return bookModel;
     }
 
-    //todo 21.12.23 update i delete + testy [x]
     public Optional<BookModel> update(Long id, BookModel bookModel) throws BookException {
         LOGGER.info("update(" + id + ", " + bookModel + ")");
         if (id == null) {
@@ -105,9 +76,9 @@ public class BookService {
             throw new BookException("Given bookModel does not exist");
         } else {
             bookModel.setId(id);
-            BookEntity bookEntity = bookMapper.from(bookModel);
+            BookEntity bookEntity = vipBookMapper.from(bookModel);
             BookEntity updatedBookEntity = bookSpringRepository.save(bookEntity);
-            BookModel updatedBookModel = bookMapper.from(updatedBookEntity);
+            BookModel updatedBookModel = vipBookMapper.from(updatedBookEntity);
 
             LOGGER.info("update(...)");
             return Optional.of(updatedBookModel);

@@ -11,7 +11,16 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 class BookMapperTest {
 
     @Autowired
-    private BookMapper bookMapper;
+    private BookMapper vipBookMapper;
+
+    public BookMapper getVipBookMapper() {
+        return vipBookMapper;
+    }
+
+    @Autowired
+    public void setVipBookMapper(BookMapper vipBookMapper) {
+        this.vipBookMapper = vipBookMapper;
+    }
 
     @Test
     void fromEntityToModel() {
@@ -22,7 +31,7 @@ class BookMapperTest {
         bookModel.setPages("100");
 
         //when
-        BookEntity mappedBookEntity = bookMapper.from(bookModel);
+        BookEntity mappedBookEntity = vipBookMapper.from(bookModel);
 
         //then
         Assertions.assertAll(
@@ -38,10 +47,10 @@ class BookMapperTest {
         bookModel.setId(9L);
         bookModel.setTitle("Title");
         bookModel.setPages("100");
-        BookEntity mappedBookEntity = bookMapper.from(bookModel);
+        BookEntity mappedBookEntity = vipBookMapper.from(bookModel);
 
         //when
-        BookModel mapppedBookModel = bookMapper.from(mappedBookEntity);
+        BookModel mapppedBookModel = vipBookMapper.from(mappedBookEntity);
 
         //then
         Assertions.assertAll(
