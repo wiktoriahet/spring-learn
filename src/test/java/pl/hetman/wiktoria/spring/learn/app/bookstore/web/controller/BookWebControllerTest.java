@@ -8,7 +8,7 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.BookService;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.mapper.BookMapper;
 
-class BookControllerTest {
+class BookWebControllerTest {
 
     @Test
     void read() throws BookException {
@@ -16,12 +16,12 @@ class BookControllerTest {
         BookSpringRepository bookRepository = null; // = new BookSpringRepository();
         BookMapper bookMapper = new BookMapper();
         BookService bookService = new BookService(bookRepository, bookMapper);
-        BookController bookController = new BookController(bookService);
+        BookWebController bookWebController = new BookWebController(bookService);
 
         BookModel bookModel = new BookModel();
 
         //when
-        String read = bookController.read(bookModel);
+        String read = bookWebController.read(bookModel);
 
         //then
         Assertions.assertNotNull(read, "read is null");

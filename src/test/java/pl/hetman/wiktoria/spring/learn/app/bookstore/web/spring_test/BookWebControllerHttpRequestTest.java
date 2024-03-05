@@ -13,7 +13,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class BookControllerHttpRequestTest { //jakbym otwierała stronę przez przeglądarkę
+public class BookWebControllerHttpRequestTest { //jakbym otwierała stronę przez przeglądarkę
     //To do that, you could start the application
     // and listen for a connection (as it would do in production)
     // and then send an HTTP request and assert the response.
@@ -57,8 +57,3 @@ public class BookControllerHttpRequestTest { //jakbym otwierała stronę przez p
     }
 
 }
-
-//todo 11,01,2024
-// stworzyć nową aplikację na start.spring.io
-// stworzyć i zaimplementować warstwy kontroler, serwis, repository, mapper
-// dwa modele w aplikacji
