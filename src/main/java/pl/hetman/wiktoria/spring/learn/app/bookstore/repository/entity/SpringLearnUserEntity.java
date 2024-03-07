@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "SpringLearnUserEntity")
+@Table(name = "USERS")
 public class SpringLearnUserEntity {
 
     @Id

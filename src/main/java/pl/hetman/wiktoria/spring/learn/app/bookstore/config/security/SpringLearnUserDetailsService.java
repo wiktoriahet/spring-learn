@@ -38,11 +38,18 @@ public class SpringLearnUserDetailsService implements UserDetailsService {
                     .withUsername(username)
                     .username(username)
                     .password(passwordEncoder.encode(foundUserEntity.getPassword()))
+                    .roles("ADMIN")
                     .build();
         } else {
             LOGGER.info("loadUserByUsername(...)");
             throw new UsernameNotFoundException("Username doesn't exist");
         }
     }
-    //todo JPARepository dla Users, springlearnuser
+    //todo stworzyć nową encję przechowującą role (id, name), opcjonalnie
+    //name jako enum
+    //napisać relację łączącą tabelę users z roles (hibernate)
+    //encja przechowujaca uzytkownikow bedze posiadala dodatkowa metode add()
+    //ktora polaczy nowa role z biezacym uzytkownikiem
+    //lista/zbior inicjalizowana w momencie tworzenia pola w klasie
+
 }
