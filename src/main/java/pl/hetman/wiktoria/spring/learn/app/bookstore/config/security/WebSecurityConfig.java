@@ -10,9 +10,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class WebSecurityConfig {
 
+//    @Autowired
+//    private SpringLearnUserRepository userRepository;
+
     @Bean
     public UserDetailsService userDetailsService() {
-        return new SpringLearnUserDetailsService();
+        return new SpringLearnUserDetailsService(
+//                userRepository, passwordEncoder()
+        );
     }
 
     @Bean
