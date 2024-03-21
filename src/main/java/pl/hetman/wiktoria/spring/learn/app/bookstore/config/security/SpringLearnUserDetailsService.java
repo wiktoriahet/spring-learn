@@ -45,6 +45,7 @@ public class SpringLearnUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Username doesn't exist");
         }
     }
+    //test
     //todo stworzyć nową encję przechowującą role (id, name), opcjonalnie
     //name jako enum
     //napisać relację łączącą tabelę users z roles (hibernate)
