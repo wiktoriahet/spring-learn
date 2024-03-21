@@ -1,10 +1,9 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -16,6 +15,9 @@ public class SpringLearnUserEntity {
     @Column(unique = true)
     private String username;
     private String password;
+
+    @ManyToMany
+    private List<RoleEntity> roles = new ArrayList<>();
 
     public SpringLearnUserEntity() {
     }
