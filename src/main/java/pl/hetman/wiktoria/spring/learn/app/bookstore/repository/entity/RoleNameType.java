@@ -1,7 +1,7 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity;
 
 
-public enum RoleName {
+public enum RoleNameType {
 
     ADMIN("Admin"),
     DEFAULT("Default"),
@@ -10,7 +10,7 @@ public enum RoleName {
 
     private String role;
 
-    RoleName(String role) {
+    RoleNameType(String role) {
         this.role = role;
     }
 

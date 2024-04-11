@@ -19,6 +19,21 @@ public class SpringLearnUserEntity {
     @ManyToMany
     private List<RoleEntity> roles = new ArrayList<>();
 
+    public void add(RoleEntity roleEntity){
+        roles.add(roleEntity);
+        roleEntity.getUsers().add(this);
+    }
+
+//    public void addAddress(Address address) {
+//        addresses.add(address);
+//        address.getPeople().add(this);
+//    }
+//
+//    public void removeAddress(Address address) {
+//        addresses.remove(address);
+//        address.getPeople().remove(this);
+//    }
+
     public SpringLearnUserEntity() {
     }
 
@@ -44,6 +59,14 @@ public class SpringLearnUserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
     }
 
     @Override

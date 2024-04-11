@@ -8,8 +8,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.SpringLearnUserRepository;
+import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity.RoleEntity;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity.SpringLearnUserEntity;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Service
@@ -31,6 +33,7 @@ public class SpringLearnUserDetailsService implements UserDetailsService {
 
         SpringLearnUserEntity foundUserEntity = userRepository.findByUsername(username);
         LOGGER.info("### USERENTITY: " + foundUserEntity);
+        List<RoleEntity> foundRoles = foundUserEntity.getRoles();
 
         if (foundUserEntity != null) {
             LOGGER.info("loadUserByUsername(...)");
@@ -38,7 +41,7 @@ public class SpringLearnUserDetailsService implements UserDetailsService {
                     .withUsername(username)
                     .username(username)
                     .password(passwordEncoder.encode(foundUserEntity.getPassword()))
-                    .roles("ADMIN")
+                    .roles("ADMIN") //todo wstawić nazwy ról pochodzące z foundRoles
                     .build();
         } else {
             LOGGER.info("loadUserByUsername(...)");
