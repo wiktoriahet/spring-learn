@@ -38,11 +38,12 @@ class SpringLearnUserEntityTest {
         roleEntity.setName(RoleNameType.ADMIN.name());
 
         SpringLearnUserEntity springLearnUserEntity = new SpringLearnUserEntity();
-        springLearnUserEntity.getRoles().add(roleEntity);
+        //springLearnUserEntity.getRoles().add(roleEntity);
+        springLearnUserEntity.add(roleEntity);
 
         //when
-        RoleEntity savedRoleEntity = roleRepository.save(roleEntity);
-        springLearnUserEntity.getRoles().add(savedRoleEntity);
+//        RoleEntity savedRoleEntity = roleRepository.save(roleEntity);
+//        springLearnUserEntity.getRoles().add(savedRoleEntity);
         SpringLearnUserEntity savedUserEntity = userRepository.save(springLearnUserEntity);
 
         //then
