@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity.SpringLearnUserEntity;
 
+import java.util.Optional;
+
 @SpringBootTest
 class SpringLearnUserRepositoryTest {
 
@@ -37,7 +39,8 @@ class SpringLearnUserRepositoryTest {
         SpringLearnUserEntity savedUserEntity = userRepository.save(userEntity);
 
         //when
-        SpringLearnUserEntity foundUserEntity = userRepository.findByIdIs(savedUserEntity.getId());
+        Optional<SpringLearnUserEntity> optionalFoundUserEntity = userRepository.findById(savedUserEntity.getId());
+        SpringLearnUserEntity foundUserEntity = optionalFoundUserEntity.orElse(null);
 
         //then
         Assertions.assertNotNull(foundUserEntity, "foundUserEntity is null");

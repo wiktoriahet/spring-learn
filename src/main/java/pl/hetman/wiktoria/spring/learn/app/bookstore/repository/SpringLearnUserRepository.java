@@ -5,6 +5,6 @@ import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity.SpringLea
 
 public interface SpringLearnUserRepository extends JpaRepository<SpringLearnUserEntity, Long> {
 
-    SpringLearnUserEntity findByIdIs(Long id);
+    SpringLearnUserEntity findByUsername(String username);
 
 }

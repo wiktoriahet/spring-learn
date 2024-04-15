@@ -1,19 +1,38 @@
 package pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "SpringLearnUserEntity")
+@Table(name = "USERS")
 public class SpringLearnUserEntity {
 
     @Id
     @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String username;
     private String password;
+
+    @ManyToMany
+    private List<RoleEntity> roles = new ArrayList<>();
+
+    public void add(RoleEntity roleEntity){
+        roles.add(roleEntity);
+        roleEntity.getUsers().add(this);
+    }
+
+//    public void addAddress(Address address) {
+//        addresses.add(address);
+//        address.getPeople().add(this);
+//    }
+//
+//    public void removeAddress(Address address) {
+//        addresses.remove(address);
+//        address.getPeople().remove(this);
+//    }
 
     public SpringLearnUserEntity() {
     }
@@ -40,6 +59,14 @@ public class SpringLearnUserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
     }
 
     @Override
