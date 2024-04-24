@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookException;
+import pl.hetman.wiktoria.spring.learn.app.bookstore.web.exception.BookNotFoundException;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.model.BookModel;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.web.service.BookService;
 
@@ -41,12 +42,14 @@ public class BookWebController {
     }
 
     @GetMapping(value = "/create")
-    public String createView(ModelMap modelMap) {
+    //@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Book doesn't exist")
+    public String createView(ModelMap modelMap) throws BookNotFoundException {
         LOGGER.info("createView()");
 
         modelMap.addAttribute("book", new BookModel());
 
         LOGGER.info("createView(...)");
+        //throw new BookNotFoundException("Book not found");
         return "app/bookstore/create-book.html";
     }
 
@@ -54,7 +57,7 @@ public class BookWebController {
     public String create(
             @Valid @ModelAttribute(name = "book") BookModel book,
             BindingResult bindingResult)
-                throws BookException {
+            throws BookException {
         //public String create(String title, Integer pages) {
         LOGGER.info("create(" + book + ")");
 //        LOGGER.info("create(" + title + ")");
