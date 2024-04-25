@@ -39,6 +39,7 @@ public class BookRestController {
 
     @PostMapping
     //@ResponseBody
+    //@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Book doesn't exist")
     public BookModel create(@RequestBody BookModel bookModel) throws BookException {
         LOGGER.info("create(" + bookModel + ")");
 

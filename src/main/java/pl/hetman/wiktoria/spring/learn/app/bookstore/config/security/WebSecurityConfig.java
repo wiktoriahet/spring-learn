@@ -20,6 +20,9 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                        // .requestMatchers("/**").denyAll()
                         .requestMatchers("/books/create").hasAnyRole("USER")
+//                        .requestMatchers(HttpMethod.POST,"/books/create").permitAll()
+//                        .requestMatchers(HttpMethod.GET,"/books/create").permitAll()
+//                        .antMatchers("/books/create").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form.permitAll())
