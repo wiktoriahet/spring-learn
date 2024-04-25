@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.hetman.wiktoria.spring.learn.app.bookstore.repository.entity.SpringLearnUserEntity;
 
 import java.util.Optional;
@@ -11,15 +12,24 @@ import java.util.Optional;
 @SpringBootTest
 class SpringLearnUserRepositoryTest {
 
+    public static final String PASSWORD = "p4$$w0rd";
     @Autowired
-    SpringLearnUserRepository userRepository;
+    private SpringLearnUserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Test
     void create() {
         //given
+
+
         SpringLearnUserEntity userEntity = new SpringLearnUserEntity();
         userEntity.setUsername("maupka123");
-        userEntity.setPassword("p4$$w0rd");
+        String encodedPassword = passwordEncoder.encode(PASSWORD);
+        userEntity.setPassword(encodedPassword);
+
+
 
         //when
         SpringLearnUserEntity savedUserEntity = userRepository.save(userEntity);

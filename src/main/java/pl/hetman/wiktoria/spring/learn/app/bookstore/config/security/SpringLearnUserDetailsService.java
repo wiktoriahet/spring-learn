@@ -40,7 +40,7 @@ public class SpringLearnUserDetailsService implements UserDetailsService {
             return User
                     .withUsername(username)
                     .username(username)
-                    .password(passwordEncoder.encode(foundUserEntity.getPassword()))
+                    .password(foundUserEntity.getPassword())
                     .roles("ADMIN") //todo wstawić nazwy ról pochodzące z foundRoles
                     .build();
         } else {
